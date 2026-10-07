@@ -30,6 +30,6 @@ def expenses_tracker():
 
         print(f"total expenses: ₦{total}")
             
-    expenses_tracker()
+expenses_tracker()
 
 
