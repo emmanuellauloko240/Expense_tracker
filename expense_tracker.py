@@ -19,9 +19,23 @@ def add_expense():
 
     expenses.append(new_expense)
     print("Success........")
+def view_expense():
+    for expense in expenses:
+        print(f"description: {expense['description']}, amount: {expense['amount']}")
+
+while True:
+    choice = (input("Menu: 1. Add Expense, 2. View Expenses, 3. Show-Total, 4. Exit: "))
+
+    if choice == "1":
+        add_expense()
+    elif choice == "2":
+        view_expense()
+    elif choice == "3":
+        print (f"Total spent:  {get_total()}")
+    elif choice == "4":
+        print("Goodbye")
+        break
+    else:
+        print("invalid choice message🙂")
 
 
-add_expense()
-add_expense()
-print(f"Total spent: {get_total()}")
-print(expenses)
