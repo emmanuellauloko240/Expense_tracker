@@ -1,4 +1,17 @@
-expenses = []
+import json
+
+
+def save_expenses():
+    with open("expenses.json", "w") as file:
+        json.dump(expenses, file)
+
+
+def load_expenses():
+    try:
+        with open("expenses.json", "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
 
 
 def get_total():
@@ -19,23 +32,27 @@ def add_expense():
 
     expenses.append(new_expense)
     print("Success........")
-def view_expense():
+
+
+def view_expenses():
     for expense in expenses:
         print(f"description: {expense['description']}, amount: {expense['amount']}")
 
+
+expenses = load_expenses()
+
 while True:
-    choice = (input("Menu: 1. Add Expense, 2. View Expenses, 3. Show-Total, 4. Exit: "))
+    choice = input("Menu: 1. Add Expense, 2. View Expenses, 3. Show-Total, 4. Exit: ")
 
     if choice == "1":
         add_expense()
+        save_expenses()
     elif choice == "2":
-        view_expense()
+        view_expenses()
     elif choice == "3":
-        print (f"Total spent:  {get_total()}")
+        print(f"Total spent: {get_total()}")
     elif choice == "4":
         print("Goodbye")
         break
     else:
-        print("invalid choice message🙂")
-
-
+        print("Invalid choice, try again.")
